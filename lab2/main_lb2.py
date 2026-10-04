@@ -58,11 +58,12 @@ def main():
     # Загружаем модель
     full_model = gensim.models.KeyedVectors.load_word2vec_format(model_path, binary=False)
 
-    # Создаем отдельную модель только с существительными.
+    # Создаем отдельную модель только с существительными
     noun_keys = [w for w in full_model.index_to_key if w.endswith('_NOUN')]
     word2vec = gensim.models.KeyedVectors(vector_size=full_model.vector_size)
     word2vec.add_vectors(noun_keys, full_model[noun_keys])
 
+    # Выданные слова
     target1 = "безделушка_NOUN"
     target2 = "комод_NOUN"
 
